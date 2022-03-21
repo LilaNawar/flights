@@ -1,0 +1,73 @@
+<h2>Selected Flight</h2>
+<a href="/flight/index">Back</a>
+
+<table>
+  <tr>
+    <th>Airline</th>
+    <th>Airport</th>
+    <th>Flight Num.</th>
+    <th>Departure Date</th>
+  </tr>
+  <td> <%= flight.airline %></td>
+  <td> <%= flight.airport %> </td>
+  <td> <%= flight.flightNo %> </td>
+  <td> <%= flight.departs %> </td>
+
+  </table>
+  <hr>
+
+  <h2> ADD Destination</h2>
+    <form id="add-destinations-form" method="POST"
+      action="/flight/<%= flight.id %>/destinations">
+      <label>Arrival:</label>
+      <input type="datetime-local" name="arrival"></textarea>
+      <label>Airport:</label>
+      <select name="airport">
+        <option value="AUS">AUS</option>
+        <option value="DFW">DFW</option>
+        <option value="DEN">DEN</option>
+        <option value="LAX">LAX</option>
+        <option value="SAN">SAN</option>
+      </select>
+      <input type="submit" value="Add Destination">
+    </form>
+    <hr>
+
+  <% if (flight.destinations.length) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Airport</th>
+          <th>Arrival</th>
+        </tr>
+      </thead>
+      <tbody>
+        <h3>Destinations</h3>
+        <hr>
+        <% flight.destinations.forEach(function(d) { %>
+          <tr>
+            <td><%= d.airport %></td>
+            <td><%= d.arrival %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <h5>No Destinations Yet. Please add a Destination</h5>
+  <% } %>
+
+  <h1>Booked Tickets</h1>
+  <% if (tickets.length) { %>
+    <% tickets.forEach(function(t) { %>
+      <li>Seat: <%= t.seat %> | Price: $<%= t.price %></li>
+    <% }) %>
+  <% } else { %>
+    <h5>No Tickets Yet</h5>
+  <% } %>
+  <h2><a href="/ticket/<%=flight.id%>/new"><button>Add Ticket</button></a></h2>
+
+
+
+
+
+</table>

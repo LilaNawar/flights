@@ -1,0 +1,21 @@
+<h2>ALL FLIGHTS</h2>
+<a href="/flight/add">ADD FLIGHT</a>
+
+<table>
+  <tr>
+    <th>Airline</th>
+    <th>Airport</th>
+    <td></td>
+    <th>Flight Num.</th>
+  </tr>
+
+  <% flights.forEach(function(flight) { %>
+    <tr>
+      <td> <%= flight.airline %></td>
+      <td> <%= flight.airport %> </td>
+      <td></td>
+      <td> <a href="/flight/<%= flight.id %>""><%= flight.flightNo %></a></td>
+      <%})%>
+    </tr>
+
+</table>
